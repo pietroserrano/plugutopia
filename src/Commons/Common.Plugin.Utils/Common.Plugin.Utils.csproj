@@ -11,6 +11,7 @@
         <Title>Common utils for PlugUtopia</Title>
         <Description>A library that provides common utils that are used by PlugUtopia</Description>
         <PackageId>PlugUtopia.Plugin.Tools</PackageId>
+		<PackageIcon>logo.ico</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/pietroserrano/pmp-plugin-system</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
@@ -21,6 +22,10 @@
         <ToolCommandName>pmpplugin-tools</ToolCommandName>
     </PropertyGroup>
     <ItemGroup>
+		<None Include="..\..\..\logo.ico">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
         <None Update="README.md">
             <Pack>true</Pack>
             <PackagePath>/</PackagePath>

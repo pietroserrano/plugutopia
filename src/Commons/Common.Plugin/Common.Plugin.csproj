@@ -10,6 +10,7 @@
 		<Title>Common types and interfaces for PlugUtopia</Title>
 		<Description>A library that provides common types and interfaces that are used by PlugUtopia</Description>
 		<PackageId>PlugUtopia.Plugin</PackageId>
+		<PackageIcon>logo.ico</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/pietroserrano/pmp-plugin-system</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
@@ -31,6 +32,10 @@
 		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="..\..\..\logo.ico">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
 	  <None Update="README.md">
 	    <Pack>true</Pack>
 	    <PackagePath>/</PackagePath>
