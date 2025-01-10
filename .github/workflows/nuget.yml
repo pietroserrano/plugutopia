@@ -1,0 +1,63 @@
+name: NuGet
+ 
+on:
+  workflow_call:
+    inputs:
+      NET_VERSION:
+        required: true
+        type: string      
+      PROJECT_DIRECTORY_NAME:
+        required: true
+        type: string
+      PROJECT_FILENAME:
+        required: true
+        type: string
+      PREFIX_TAG:
+        required: true
+        type: string
+      RELEASE:
+        required: true
+        type: string
+      IS_PRE_RELEASE:
+        required: false
+        default: false
+        type: boolean
+        
+jobs:
+  build:
+    name: Publish Nuget
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+        
+    - name: Setup .NET SDK ${{ inputs.NET_VERSION }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.NET_VERSION }}
+        dotnet-quality: 'ga'
+        
+    - name: Nerdbank.GitVersioning 
+      uses: dotnet/nbgv@v0.4
+      id: nbgv
+      with:        
+        path: ${{ inputs.PROJECT_DIRECTORY_NAME }}
+    
+    - name: Package
+      run: dotnet pack -c Release -o . '${{ inputs.PROJECT_DIRECTORY_NAME }}/${{ inputs.PROJECT_FILENAME }}'
+      
+    - name: Publish on NuGet
+      run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json  
+      
+    - name: Create release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: ${{ inputs.PREFIX_TAG }}_v${{ steps.nbgv.outputs.NuGetPackageVersion }}
+          release_name: ${{ inputs.RELEASE }} ${{ steps.nbgv.outputs.NuGetPackageVersion }}
+          draft: false
+          prerelease: ${{ inputs.IS_PRE_RELEASE }}

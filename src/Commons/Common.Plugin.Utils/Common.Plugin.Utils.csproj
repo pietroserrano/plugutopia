@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Authors>Pietro Serrano</Authors>
+        <Company>Pietro Serrano</Company>
+        <Product>Common utils for PlugUtopia</Product>
+        <Title>Common utils for PlugUtopia</Title>
+        <Description>A library that provides common utils that are used by PlugUtopia</Description>
+        <PackageId>PlugUtopia.Plugin.Tools</PackageId>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/pietroserrano/pmp-plugin-system</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/pietroserrano/pmp-plugin-system.git</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>pmpplugin-tools</ToolCommandName>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Update="README.md">
+            <Pack>true</Pack>
+            <PackagePath>/</PackagePath>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="PlugUtopia.Plugin" Version="1.0.20" />
+    </ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>Common.Plugin.Utils.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+</Project>
