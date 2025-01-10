@@ -39,25 +39,25 @@ jobs:
   release:
     needs: filter
     if: ${{ (needs.filter.outputs.changed == 'true' && github.event_name == 'push') || (inputs.libsToRelease == 'all') ||  (inputs.libsToRelease == 'Common.Plugin')}}
-    uses: pietroserrano/pmp-plugin-system/.github/workflows/nuget.yml@main
+    uses: pietroserrano/plugutopia/.github/workflows/nuget.yml@main
     with:
       NET_VERSION: '8.x'
       PROJECT_DIRECTORY_NAME: src/Commons/Common.Plugin
       PROJECT_FILENAME: Common.Plugin.csproj
-      PREFIX_TAG: PmpPluginSystem.Plugin
-      RELEASE: PmpPluginSystem.Plugin
+      PREFIX_TAG: PlugUtopia.Plugin
+      RELEASE: PlugUtopia.Plugin
       IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
     secrets: inherit
     
   release2:
     needs: filter
     if: ${{ (needs.filter.outputs.changed == 'true' && github.event_name == 'push') || (inputs.libsToRelease == 'all') ||  (inputs.libsToRelease == 'Common.Plugin.Utils')}}
-    uses: pietroserrano/pmp-plugin-system/.github/workflows/nuget.yml@main
+    uses: pietroserrano/plugutopia/.github/workflows/nuget.yml@main
     with:
       NET_VERSION: '8.x'
       PROJECT_DIRECTORY_NAME: src/Commons/Common.Plugin.Utils
       PROJECT_FILENAME: Common.Plugin.Utils.csproj
-      PREFIX_TAG: PmpPluginSystem.Plugin.Tools
-      RELEASE: PmpPluginSystem.Plugin.Tools
+      PREFIX_TAG: PlugUtopia.Plugin.Tools
+      RELEASE: PlugUtopia.Plugin.Tools
       IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
     secrets: inherit    
