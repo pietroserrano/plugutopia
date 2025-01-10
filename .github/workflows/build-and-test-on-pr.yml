@@ -6,9 +6,9 @@ on:
 env:
     COMMON_TESTS_PROJECT: 'src/Tests/Common.Tests/Common.Tests.csproj'
     COMMON_UTILS_TESTS_PROJECT: 'src/Tests/Common.Plugin.Utils.Tests/Common.Plugin.Utils.Tests.csproj'
-    APP_BLAZOR_PROJECT: 'src/Apps/Blazor/PmpPluginSystem.Blazor/PmpPluginSystem.Blazor.csproj'
-    APP_API_PROJECT: 'src/Apps/PmpPluginSystem.Api/PmpPluginSystem.Api.csproj'
-    APP_CONSOLE_PROJECT: 'src/Apps/PmpPluginSystem.Console/PmpPluginSystem.Console.csproj'
+    APP_BLAZOR_PROJECT: 'src/Apps/Blazor/PlugUtopia.Blazor/PlugUtopia.Blazor.csproj'
+    APP_API_PROJECT: 'src/Apps/PlugUtopia.Api/PlugUtopia.Api.csproj'
+    APP_CONSOLE_PROJECT: 'src/Apps/PlugUtopia.Console/PlugUtopia.Console.csproj'
 
 jobs:
   build-test-common:
