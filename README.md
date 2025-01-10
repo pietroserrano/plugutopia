@@ -1,1 +1,79 @@
-# plugutopia
+# PlugUtopia
+
+[![Nuget](https://img.shields.io/nuget/v/PlugUtopia.Plugin?label=PlugUtopia.Plugin)](https://www.nuget.org/packages/PlugUtopia.Plugin)
+[![Nuget](https://img.shields.io/nuget/dt/PlugUtopia.Plugin?label=Download)](https://www.nuget.org/packages/PlugUtopia.Plugin)
+
+[![GitHub Release](https://img.shields.io/github/v/release/pietroserrano/plugutopia?label=PlugUtopia.Plugin.Tools&filter=PlugUtopia.Plugin.Tools*)](https://github.com/pietroserrano/plugutopia/pkgs/nuget/PlugUtopia.Plugin.Tools)
+[![GitHub Release](https://img.shields.io/github/v/release/pietroserrano/plugutopia?label=PlugUtopia.Console&filter=PlugUtopia-Console*)](https://github.com/pietroserrano/plugutopia/pkgs/container/plugutopia-console)
+
+## Getting Started
+
+```shell
+
+docker build . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
+
+```
+
+or
+
+```shell
+
+docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
+
+```
+
+docker-compose.yml example
+
+```yaml
+version: '3.5'
+
+services:
+  plugutopia-console:
+    image: plugutopia-console
+    
+    volumes:
+      - ./plugins:/app/plugins
+
+    environment:
+      - BotConfiguration__BotToken=<token>
+      - BotConfiguration__Whitelist__0=<username1>
+      - BotConfiguration__Whitelist__N=<usernameN>
+
+```
+
+## How to create your own plugin
+1. Add the following statements to your project file:
+
+```xml
+<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Exec Command="plugutopia-tools --generate-manifest $(OutDir) $([System.IO.Path]::Combine($(TargetDir), $(AssemblyName)))" />
+</Target>
+```
+
+2. Create a new internal-manifest.json file to your project and add it as an embedded resource
+```json
+{
+  "category": "",
+  "changelog": "github.com/readme.md",
+  "description": "plugin description",
+  "name": "plugin name",
+  "overview": "",
+  "owner": "",
+  "targetAbi": "1.0.0",
+  "guid": ""
+}
+```
+
+```xml
+	<ItemGroup>
+	  <None Remove="internal-manifest.json" />
+	  <EmbeddedResource Include="internal-manifest.json" />
+	</ItemGroup>
+```
+
+3. Install the tool needed to create the manifest:
+```bash
+dotnet tool install --global PlugUtopia.Plugin.Tools
+```
+
+4. Verify that, after compiling the project, the manifest.json file is created correctly and that it contains all the DLLs needed for the plugin to work.
