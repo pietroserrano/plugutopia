@@ -47,9 +47,9 @@ jobs:
       PREFIX_TAG: PlugUtopia.Plugin
       RELEASE: PlugUtopia.Plugin
       IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
+    secrets:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       NUGET_SOURCE: https://api.nuget.org/v3/index.json
-    secrets: inherit
     
   release2:
     needs: filter
@@ -62,6 +62,6 @@ jobs:
       PREFIX_TAG: PlugUtopia.Plugin.Tools
       RELEASE: PlugUtopia.Plugin.Tools
       IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
+    secrets:      
       NUGET_API_KEY: ${{ secrets.GITHUB_TOKEN }}
-      NUGET_SOURCE: https://nuget.pkg.github.com/pietroserrano/index.json
-    secrets: inherit    
+      NUGET_SOURCE: https://nuget.pkg.github.com/pietroserrano/index.json    
