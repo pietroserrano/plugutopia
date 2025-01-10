@@ -15,7 +15,7 @@ on:
         type: choice
         options:
         - Common.Plugin
-        # - Common.Plugin.Utils
+        - Common.Plugin.Utils
       preRelease:
         description: 'pre-release (def: false)'
         required: false
