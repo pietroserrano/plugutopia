@@ -1,0 +1,63 @@
+name: Release Common.Plugin
+ 
+on:
+  # push:
+  #   branches: [ main ]
+  #   paths: [ 
+  #       'src/Commons/Common.Plugin/**',
+  #       ]
+  workflow_dispatch:
+    inputs:
+      libsToRelease:
+        description: 'Libraries to release'
+        required: true
+        default: 'Common.Plugin'
+        type: choice
+        options:
+        - Common.Plugin
+        # - Common.Plugin.Utils
+      preRelease:
+        description: 'pre-release (def: false)'
+        required: false
+        default: false
+        type: boolean     
+
+jobs:
+  filter:
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}  
+    name: Detect Path
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+           filters: |
+              changed:
+                - 'src/Commons/Common.Plugin/**'
+  release:
+    needs: filter
+    if: ${{ (needs.filter.outputs.changed == 'true' && github.event_name == 'push') || (inputs.libsToRelease == 'all') ||  (inputs.libsToRelease == 'Common.Plugin')}}
+    uses: pietroserrano/pmp-plugin-system/.github/workflows/nuget.yml@main
+    with:
+      NET_VERSION: '8.x'
+      PROJECT_DIRECTORY_NAME: src/Commons/Common.Plugin
+      PROJECT_FILENAME: Common.Plugin.csproj
+      PREFIX_TAG: PmpPluginSystem.Plugin
+      RELEASE: PmpPluginSystem.Plugin
+      IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
+    secrets: inherit
+    
+  release2:
+    needs: filter
+    if: ${{ (needs.filter.outputs.changed == 'true' && github.event_name == 'push') || (inputs.libsToRelease == 'all') ||  (inputs.libsToRelease == 'Common.Plugin.Utils')}}
+    uses: pietroserrano/pmp-plugin-system/.github/workflows/nuget.yml@main
+    with:
+      NET_VERSION: '8.x'
+      PROJECT_DIRECTORY_NAME: src/Commons/Common.Plugin.Utils
+      PROJECT_FILENAME: Common.Plugin.Utils.csproj
+      PREFIX_TAG: PmpPluginSystem.Plugin.Tools
+      RELEASE: PmpPluginSystem.Plugin.Tools
+      IS_PRE_RELEASE: ${{ contains(inputs.preRelease, 'true') }}
+    secrets: inherit    
