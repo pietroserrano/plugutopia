@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PlugUtopia.Console": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

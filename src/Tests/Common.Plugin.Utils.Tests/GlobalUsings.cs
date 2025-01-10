@@ -1,0 +1,10 @@
+global using Common.Model.Abstractions;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;
+global using System.Reflection.Emit;
+global using System.Reflection.Metadata;
+global using System.Reflection.Metadata.Ecma335;
+global using System.Reflection.PortableExecutable;
+global using System.Resources;
+global using Xunit;

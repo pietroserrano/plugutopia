@@ -1,0 +1,12 @@
+global using Common.Configurations;
+global using Common.Extensions;
+global using Common.Model.Abstractions;
+global using Common.Model.Models;
+global using Common.Model.Models.Types;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging.Abstractions;
+global using System.Reflection;
+global using System.Reflection.Emit;
+global using System.Text.Json;
+global using Xunit;

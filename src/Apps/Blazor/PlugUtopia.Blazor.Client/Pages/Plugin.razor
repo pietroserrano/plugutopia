@@ -1,0 +1,66 @@
+﻿@page "/plugins"
+@rendermode InteractiveServer
+
+@using Common.Model.Abstractions
+@using Common.Model.Models
+@using PlugUtopia.Blazor.Client.Components.Base
+@inject IServiceProvider provider
+
+<PageTitle>Home</PageTitle>
+
+<MudTable Items="_plugins" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        @* <MudTh>Id</MudTh> *@
+        <MudTh>Name</MudTh>
+        <MudTh>Category</MudTh>
+        <MudTh>Version</MudTh>
+        <MudTh>AssemblyName</MudTh>
+        <MudTh>TargetAbi</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        @* <MudTd DataLabel="Id">@context.Id</MudTd> *@
+        <MudTd DataLabel="Name">@context.Item.Name</MudTd>
+        <MudTd DataLabel="Category">@context.Item.Category</MudTd>
+        <MudTd DataLabel="Version">@context.Item.Version</MudTd>
+        <MudTd DataLabel="AssemblyName">@context.Item.AssemblyName</MudTd>
+        <MudTd DataLabel="TargetAbi">@context.Item.TargetAbi</MudTd>
+        <MudTd><MudIconButton Icon="@GetIcon(@context)" aria-label="details" OnClick="@(() => ShowDetails(@context))"/></MudTd>
+    </RowTemplate>
+    <ChildRowContent>
+        @if (context.ShowDetails)
+        {
+            <MudTable Dense="true" Context="ctx" Items="context.Item.ReferencedAssemblies" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Name">@ctx</MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+    </ChildRowContent>
+</MudTable>
+
+@code {
+
+    private List<BaseListItem<PluginManifest>> _plugins = Enumerable.Empty<BaseListItem<PluginManifest>>().ToList();
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        _plugins = provider.CreateScope().ServiceProvider.GetRequiredService<IPluginManager>().GetPlugins()
+            .Select(m => new BaseListItem<PluginManifest>(m.Manifest)).ToList();
+    }
+
+    private string GetIcon<TItem>(BaseListItem<TItem> item)
+        => item.ShowDetails ? Icons.Material.Filled.ArrowDropUp : Icons.Material.Filled.ArrowDropDown;
+
+    private void ShowDetails(BaseListItem<PluginManifest> item)
+    {
+        var tmp = _plugins.First(p => p.Item.Id == item.Item.Id);
+        tmp.ShowDetails = !tmp.ShowDetails;
+    }
+
+}

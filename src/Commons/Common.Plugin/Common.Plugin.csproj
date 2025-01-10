@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+		<Authors>Pietro Serrano</Authors>
+		<Company>Pietro Serrano</Company>
+		<Product>Common types and interfaces for PlugUtopia</Product>
+		<Title>Common types and interfaces for PlugUtopia</Title>
+		<Description>A library that provides common types and interfaces that are used by PlugUtopia</Description>
+		<PackageId>PlugUtopia.Plugin</PackageId>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/pietroserrano/pmp-plugin-system</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/pietroserrano/pmp-plugin-system.git</RepositoryUrl>
+		<RepositoryBranch>main</RepositoryBranch>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
+        <PackageReference Include="Telegram.Bot" Version="21.3.0" />
+        <PackageReference Include="MediatR" Version="12.3.0" />
+    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Common.Model\Common.Model.csproj">
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>PlugUtopia.Model.dll</IncludeAssets>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>true</Pack>
+	    <PackagePath>/</PackagePath>
+	  </None>
+	</ItemGroup>
+	<Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+		<ItemGroup>
+			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+		</ItemGroup>
+	</Target>
+</Project>
