@@ -3,7 +3,7 @@
 
 ---
 <p align="center">
-<img alt="Logo Banner" src="https://raw.githubusercontent.com/pietroserrano/plugutopia/main/logo.ico?sanitize=true"/>
+<img alt="Logo Banner" src="https://raw.githubusercontent.com/pietroserrano/plugutopia/main/logo.png?sanitize=true"/>
 <br/>
 
 [![Nuget](https://img.shields.io/nuget/v/PlugUtopia.Plugin?label=PlugUtopia.Plugin)](https://www.nuget.org/packages/PlugUtopia.Plugin)
