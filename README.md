@@ -1,10 +1,18 @@
-# PlugUtopia
+<h1 align="center">PlugUtopia</h1>
+<h3 align="center">Develop, Connect and Deploy.</h3>
+
+---
+<p align="center">
+<img alt="Logo Banner" src="https://raw.githubusercontent.com/pietroserrano/plugutopia/main/logo.ico?sanitize=true"/>
+<br/>
 
 [![Nuget](https://img.shields.io/nuget/v/PlugUtopia.Plugin?label=PlugUtopia.Plugin)](https://www.nuget.org/packages/PlugUtopia.Plugin)
 [![Nuget](https://img.shields.io/nuget/dt/PlugUtopia.Plugin?label=Download)](https://www.nuget.org/packages/PlugUtopia.Plugin)
 
 [![GitHub Release](https://img.shields.io/github/v/release/pietroserrano/plugutopia?label=PlugUtopia.Plugin.Tools&filter=PlugUtopia.Plugin.Tools*)](https://github.com/pietroserrano/plugutopia/pkgs/nuget/PlugUtopia.Plugin.Tools)
 [![GitHub Release](https://img.shields.io/github/v/release/pietroserrano/plugutopia?label=PlugUtopia.Console&filter=PlugUtopia-Console*)](https://github.com/pietroserrano/plugutopia/pkgs/container/plugutopia-console)
+
+---
 
 ## Getting Started
 
