@@ -3,15 +3,15 @@ name: PmpPluginSystem.Console image release
 on:
   push:
     tags:
-    - 'pmp-console-v[0-9]+.[0-9]+.[0-9]'
-    - 'pmp-console-v[0-9]+.[0-9]+.[0-9]'
-    - 'pmp-console-v[0-9]+.[0-9]+.[0-9]'
-    - 'pmp-console-v[0-9]+.[0-9]+.[0-9]'
+    - 'plugutopia-console-v[0-9]+.[0-9]+.[0-9]'
+    - 'plugutopia-console-v[0-9]+.[0-9]+.[0-9]'
+    - 'plugutopia-console-v[0-9]+.[0-9]+.[0-9]'
+    - 'plugutopia-console-v[0-9]+.[0-9]+.[0-9]'
 
 env:
   REGISTRY: ghcr.io/pietroserrano
-  IMAGE_NAME: pmp-plugin-system-console
-  DOCKER_FILE_PATH: './src/Apps/PmpPluginSystem.Console/Dockerfile'
+  IMAGE_NAME: plugutopia-console
+  DOCKER_FILE_PATH: './src/Apps/PlugUtopia.Console/Dockerfile'
 
 jobs:
   build-and-push-image:
