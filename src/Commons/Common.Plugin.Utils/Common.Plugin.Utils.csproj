@@ -19,7 +19,7 @@
         <RepositoryBranch>main</RepositoryBranch>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackAsTool>true</PackAsTool>
-        <ToolCommandName>pmpplugin-tools</ToolCommandName>
+        <ToolCommandName>plugutopia-tools</ToolCommandName>
     </PropertyGroup>
     <ItemGroup>
 		<None Include="..\..\..\logo.ico">
