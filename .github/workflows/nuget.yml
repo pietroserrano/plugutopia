@@ -22,12 +22,11 @@ on:
         required: false
         default: false
         type: boolean
+    secrets: 
       NUGET_SOURCE:
         required: true
-        type: string
       NUGET_API_KEY:
-        required: true
-        type: string        
+        required: true    
         
 jobs:
   build:
@@ -56,7 +55,7 @@ jobs:
       run: dotnet pack -c Release -o . '${{ inputs.PROJECT_DIRECTORY_NAME }}/${{ inputs.PROJECT_FILENAME }}'
       
     - name: Publish on NuGet
-      run: dotnet nuget push *.nupkg -k  ${{ inputs.NUGET_API_KEY }} -s  ${{ inputs.NUGET_SOURCE }}
+      run: dotnet nuget push *.nupkg -k  ${{ secrets.NUGET_API_KEY }} -s  ${{ secrets.NUGET_SOURCE }}
       
     - name: Create release
       uses: actions/create-release@v1
