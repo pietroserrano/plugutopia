@@ -1,0 +1,106 @@
+name: Build & Test
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+env:
+    COMMON_TESTS_PROJECT: 'src/Tests/Common.Tests/Common.Tests.csproj'
+    COMMON_UTILS_TESTS_PROJECT: 'src/Tests/Common.Plugin.Utils.Tests/Common.Plugin.Utils.Tests.csproj'
+    APP_BLAZOR_PROJECT: 'src/Apps/Blazor/PmpPluginSystem.Blazor/PmpPluginSystem.Blazor.csproj'
+    APP_API_PROJECT: 'src/Apps/PmpPluginSystem.Api/PmpPluginSystem.Api.csproj'
+    APP_CONSOLE_PROJECT: 'src/Apps/PmpPluginSystem.Console/PmpPluginSystem.Console.csproj'
+
+jobs:
+  build-test-common:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+    - name: Install dependencies
+      run: dotnet restore ${{ env.COMMON_TESTS_PROJECT }}
+    - name: Build
+      run: dotnet build ${{ env.COMMON_TESTS_PROJECT }} --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ${{ env.COMMON_TESTS_PROJECT }} --no-restore --verbosity normal 
+  
+  build-test-common-utils:
+    needs: [build-test-common]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+    - name: Install dependencies
+      run: dotnet restore ${{ env.COMMON_UTILS_TESTS_PROJECT }}
+    - name: Build
+      run: dotnet build ${{ env.COMMON_UTILS_TESTS_PROJECT }} --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ${{ env.COMMON_UTILS_TESTS_PROJECT }} --no-restore --verbosity normal    
+
+  build-app-console:
+    needs: [build-test-common-utils]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+    - name: Install dependencies
+      run: dotnet restore ${{ env.APP_CONSOLE_PROJECT }}
+    - name: Build
+      run: dotnet build ${{ env.APP_CONSOLE_PROJECT }} --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ${{ env.APP_CONSOLE_PROJECT }} --no-restore --verbosity normal   
+
+  build-app-api:
+    needs: [build-test-common-utils]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+    - name: Install dependencies
+      run: dotnet restore ${{ env.APP_API_PROJECT }}
+    - name: Build
+      run: dotnet build ${{ env.APP_API_PROJECT }} --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ${{ env.APP_API_PROJECT }} --no-restore --verbosity normal    
+
+  build-app-blazor:
+    needs: [build-test-common-utils]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+    - name: Install dependencies
+      run: dotnet restore ${{ env.APP_BLAZOR_PROJECT }}
+    - name: Build
+      run: dotnet build ${{ env.APP_BLAZOR_PROJECT }} --configuration Release --no-restore
+    - name: Test
+      run: dotnet test ${{ env.APP_BLAZOR_PROJECT }} --no-restore --verbosity normal          
