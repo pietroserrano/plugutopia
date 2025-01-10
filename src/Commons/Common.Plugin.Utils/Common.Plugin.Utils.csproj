@@ -27,7 +27,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="PlugUtopia.Plugin" Version="1.0.20" />
+      <PackageReference Include="PlugUtopia.Plugin" Version="1.0.1" />
     </ItemGroup>
 
 	<ItemGroup>
