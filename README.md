@@ -16,20 +16,6 @@
 
 ## Getting Started
 
-```shell
-
-docker build . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
-
-```
-
-or
-
-```shell
-
-docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
-
-```
-
 docker-compose.yml example
 
 ```yaml
@@ -46,6 +32,21 @@ services:
       - BotConfiguration__BotToken=<token>
       - BotConfiguration__Whitelist__0=<username1>
       - BotConfiguration__Whitelist__N=<usernameN>
+
+```
+or
+
+```shell
+
+docker build . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
+
+```
+
+or
+
+```shell
+
+docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfile -t plugutopia-console
 
 ```
 
