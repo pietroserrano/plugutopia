@@ -12,9 +12,9 @@
 		<PackageId>PlugUtopia.Plugin</PackageId>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/pietroserrano/pmp-plugin-system</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/pietroserrano/plugutopia</PackageProjectUrl>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/pietroserrano/pmp-plugin-system.git</RepositoryUrl>
+		<RepositoryUrl>https://github.com/pietroserrano/plugutopia.git</RepositoryUrl>
 		<RepositoryBranch>main</RepositoryBranch>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
