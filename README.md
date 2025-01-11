@@ -82,6 +82,7 @@ docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfi
 
 3. Install the tool needed to create the manifest:
 ```bash
+dotnet nuget add source -u [GithubUserName] -p [YourApiKey] -n gh-plugutopia https://nuget.pkg.github.com/pietroserrano/index.json
 dotnet tool install --source https://nuget.pkg.github.com/pietroserrano/index.json --global PlugUtopia.Plugin.Tools
 ```
 
