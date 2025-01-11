@@ -74,10 +74,10 @@ docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfi
 ```
 
 ```xml
-	<ItemGroup>
-	  <None Remove="internal-manifest.json" />
-	  <EmbeddedResource Include="internal-manifest.json" />
-	</ItemGroup>
+<ItemGroup>
+  <None Remove="internal-manifest.json" />
+  <EmbeddedResource Include="internal-manifest.json" />
+</ItemGroup>
 ```
 
 3. Install the tool needed to create the manifest:
