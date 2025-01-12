@@ -61,7 +61,9 @@ docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfi
 2. Create project
 
 ```csharp
-mkdir path/to/proj/proj_name
+cd path/to/proj
+mkdir proj_name
+cd proj_name
 dotnet new plugutopia-plugin -n proj_name  
 ```
 
