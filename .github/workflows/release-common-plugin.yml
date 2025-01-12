@@ -50,7 +50,6 @@ jobs:
     secrets:
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       NUGET_SOURCE: https://api.nuget.org/v3/index.json
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
     
   release2:
     needs: filter
@@ -66,4 +65,3 @@ jobs:
     secrets:      
       NUGET_API_KEY: ${{ secrets.GITHUB_TOKEN }}
       NUGET_SOURCE: https://nuget.pkg.github.com/pietroserrano/index.json    
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
