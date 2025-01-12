@@ -50,7 +50,29 @@ docker buildx build --platform linux/amd64 . -f Apps/PlugUtopia.Console/Dockerfi
 
 ```
 
-## How to create your own plugin
+## How to create plugin
+
+1. Install dotnet templatate
+
+```bash
+ dotnet new install PlugUtopia.Plugin.Templates
+```
+
+2. Create project
+
+```csharp
+mkdir path/to/proj/proj_name
+dotnet new plugutopia-plugin -n proj_name  
+```
+
+3. Install the tool needed to create the manifest:
+```bash
+dotnet nuget add source -u [GithubUserName] -p [YourApiKey] -n gh-plugutopia https://nuget.pkg.github.com/pietroserrano/index.json
+dotnet tool install -g PlugUtopia.Plugin.Tools
+```
+
+## How to add plugin infrastructure to existing app
+
 1. Add the following statements to your project file:
 
 ```xml
